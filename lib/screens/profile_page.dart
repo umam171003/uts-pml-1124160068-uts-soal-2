@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'edit_profile.dart';
 import '../models/profile.dart';
 import '../widgets/info_tile.dart';
+import 'about_page.dart';
 
 class ProfilePage extends StatefulWidget {
   final Profile profile;
