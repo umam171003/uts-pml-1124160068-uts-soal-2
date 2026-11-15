@@ -46,5 +46,39 @@ class _ProfilePageState extends State<ProfilePage>{
   }
 
   @override
-  Widger
-}
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          selectedIndex == 0 ? 'profil saya' : 'Tentang saya',
+        ),
+        centerTitle: true,
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+
+              child: Center(
+                child: Text(
+                  'MENU APLIKASI',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+
+            
+          ],
+        )
+      )
+    )
+  }
+} 
