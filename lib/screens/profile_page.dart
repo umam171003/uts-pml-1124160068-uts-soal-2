@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'edit_profile.dart';
 import '../models/profile.dart';
 import '../widgets/info_tile.dart';
 
-class ProfilePage extends StatefulWidget{
+class ProfilePage extends StatefulWidget {
   final Profile profile;
   final Function(bool) onThemeChanged;
 
@@ -15,23 +15,20 @@ class ProfilePage extends StatefulWidget{
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
-
 }
 
-class _ProfilePageState extends State<ProfilePage>{
+class _ProfilePageState extends State<ProfilePage> {
   int selectedIndex = 0;
 
-  Future<void> editProfile() async{
+  Future<void> editProfile() async {
     final result = await Navigator.push<Profile>(
       context,
       MaterialPageRoute(
-        builder: (context) => EditProfilePage(
-          profile: widget.profile,
-        ),
+        builder: (context) => EditProfilePage(profile: widget.profile),
       ),
     );
 
-    if (result != null){
+    if (result != null) {
       setState(() {
         widget.profile.nama = result.nama;
         widget.profile.nim = result.nim;
@@ -49,9 +46,7 @@ class _ProfilePageState extends State<ProfilePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          selectedIndex == 0 ? 'profil saya' : 'Tentang saya',
-        ),
+        title: Text(selectedIndex == 0 ? 'profil saya' : 'Tentang saya'),
         centerTitle: true,
       ),
 
@@ -59,9 +54,7 @@ class _ProfilePageState extends State<ProfilePage>{
         child: ListView(
           children: [
             const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+              decoration: BoxDecoration(color: Colors.blue),
 
               child: Center(
                 child: Text(
@@ -106,9 +99,7 @@ class _ProfilePageState extends State<ProfilePage>{
         ),
       ),
 
-       body: selectedIndex == 0
-          ? buildProfile()
-          : const AboutPage(),
+      body: selectedIndex == 0 ? buildProfile() : const AboutPage(),
 
       floatingActionButton: selectedIndex == 0
           ? FloatingActionButton(
@@ -125,20 +116,14 @@ class _ProfilePageState extends State<ProfilePage>{
           });
         },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Tentang',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Tentang'),
         ],
       ),
     );
   }
 
-   Widget buildProfile() {
+  Widget buildProfile() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -147,9 +132,7 @@ class _ProfilePageState extends State<ProfilePage>{
 
           const CircleAvatar(
             radius: 65,
-            backgroundImage: AssetImage(
-              'assets/images/profil.jpg',
-            ),
+            backgroundImage: AssetImage('assets/images/profil.jpg'),
           ),
 
           const SizedBox(height: 15),
@@ -157,10 +140,7 @@ class _ProfilePageState extends State<ProfilePage>{
           Text(
             widget.profile.nama,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
           ),
 
           const SizedBox(height: 5),
@@ -173,18 +153,11 @@ class _ProfilePageState extends State<ProfilePage>{
             alignment: Alignment.centerLeft,
             child: Text(
               'Identitas Mahasiswa',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
 
-          InfoTile(
-            icon: Icons.badge,
-            label: 'NIM',
-            value: widget.profile.nim,
-          ),
+          InfoTile(icon: Icons.badge, label: 'NIM', value: widget.profile.nim),
 
           InfoTile(
             icon: Icons.school,
@@ -204,10 +177,7 @@ class _ProfilePageState extends State<ProfilePage>{
             alignment: Alignment.centerLeft,
             child: Text(
               'Kontak Saya',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
 
@@ -232,4 +202,4 @@ class _ProfilePageState extends State<ProfilePage>{
       ),
     );
   }
-} 
+}
