@@ -1,14 +1,10 @@
-
 import 'package:flutter/material.dart';
 import '../models/profile.dart';
 
 class EditProfilePage extends StatefulWidget {
   final Profile profile;
 
-  const EditProfilePage({
-    super.key,
-    required this.profile,
-  });
+  const EditProfilePage({super.key, required this.profile});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -30,37 +26,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void initState() {
     super.initState();
 
-    namaController = TextEditingController(
-      text: widget.profile.nama,
-    );
+    namaController = TextEditingController(text: widget.profile.nama);
 
-    nimController = TextEditingController(
-      text: widget.profile.nim,
-    );
+    nimController = TextEditingController(text: widget.profile.nim);
 
-    prodiController = TextEditingController(
-      text: widget.profile.prodi,
-    );
+    prodiController = TextEditingController(text: widget.profile.prodi);
 
-    kelasController = TextEditingController(
-      text: widget.profile.kelas,
-    );
+    kelasController = TextEditingController(text: widget.profile.kelas);
 
-    bioController = TextEditingController(
-      text: widget.profile.bio,
-    );
+    bioController = TextEditingController(text: widget.profile.bio);
 
-    emailController = TextEditingController(
-      text: widget.profile.email,
-    );
+    emailController = TextEditingController(text: widget.profile.email);
 
-    hpController = TextEditingController(
-      text: widget.profile.HP,
-    );
+    hpController = TextEditingController(text: widget.profile.HP);
 
-    githubController = TextEditingController(
-      text: widget.profile.github,
-    );
+    githubController = TextEditingController(text: widget.profile.github);
   }
 
   @override
@@ -97,9 +77,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Profil'),
-      ),
+      appBar: AppBar(title: const Text('Edit Profil')),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -178,9 +156,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     return 'Email wajib diisi';
                   }
 
-                  final emailRegex = RegExp(
-                    r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
-                  );
+                  final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
                   if (!emailRegex.hasMatch(value)) {
                     return 'Format email tidak valid';
