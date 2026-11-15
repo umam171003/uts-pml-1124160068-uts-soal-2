@@ -133,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
           const CircleAvatar(
             radius: 65,
-            backgroundImage: AssetImage('assets/images/profil.jpg'),
+            backgroundImage: AssetImage('assets/images/umam.jpeg'),
           ),
 
           const SizedBox(height: 15),
@@ -158,46 +158,48 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
 
-          InfoTile(icon: Icons.badge, label: 'NIM', value: widget.profile.nim),
+          InfoTile(
+            icon: Icons.person,
+            label: 'Nama Lengkap',
+            value: widget.profile.nama,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Informasi Nama Lengkap')),
+              );
+            },
+          ),
+
+          InfoTile(
+            icon: Icons.badge,
+            label: 'NIM',
+            value: widget.profile.nim,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('NIM: ${widget.profile.nim}')),
+              );
+            },
+          ),
 
           InfoTile(
             icon: Icons.school,
             label: 'Program Studi',
             value: widget.profile.prodi,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Prodi: ${widget.profile.prodi}')),
+              );
+            },
           ),
 
           InfoTile(
             icon: Icons.class_,
             label: 'Kelas',
             value: widget.profile.kelas,
-          ),
-
-          const SizedBox(height: 15),
-
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Kontak Saya',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-
-          InfoTile(
-            icon: Icons.email,
-            label: 'Email',
-            value: widget.profile.email,
-          ),
-
-          InfoTile(
-            icon: Icons.phone,
-            label: 'Nomor HP',
-            value: widget.profile.HP,
-          ),
-
-          InfoTile(
-            icon: Icons.code,
-            label: 'GitHub',
-            value: widget.profile.github,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Kelas: ${widget.profile.kelas}')),
+              );
+            },
           ),
         ],
       ),
