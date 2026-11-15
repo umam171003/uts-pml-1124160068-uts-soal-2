@@ -75,10 +75,161 @@ class _ProfilePageState extends State<ProfilePage>{
               ),
             ),
 
-            
+            SwitchListTile(
+              title: const Text('Mode Gelap'),
+              secondary: const Icon(Icons.dark_mode),
+              value: Theme.of(context).brightness == Brightness.dark,
+              onChanged: widget.onThemeChanged,
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil'),
+              onTap: () {
+                setState(() {
+                  selectedIndex = 0;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('Tentang Saya'),
+              onTap: () {
+                setState(() {
+                  selectedIndex = 1;
+                });
+                Navigator.pop(context);
+              },
+            ),
           ],
-        )
-      )
-    )
+        ),
+      ),
+
+       body: selectedIndex == 0
+          ? buildProfile()
+          : const AboutPage(),
+
+      floatingActionButton: selectedIndex == 0
+          ? FloatingActionButton(
+              onPressed: editProfile,
+              child: const Icon(Icons.edit),
+            )
+          : null,
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'Tentang',
+          ),
+        ],
+      ),
+    );
+  }
+
+   Widget buildProfile() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          const SizedBox(height: 15),
+
+          const CircleAvatar(
+            radius: 65,
+            backgroundImage: AssetImage(
+              'assets/images/profil.jpg',
+            ),
+          ),
+
+          const SizedBox(height: 15),
+
+          Text(
+            widget.profile.nama,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 23,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          const SizedBox(height: 5),
+
+          Text(widget.profile.bio),
+
+          const SizedBox(height: 25),
+
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Identitas Mahasiswa',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          InfoTile(
+            icon: Icons.badge,
+            label: 'NIM',
+            value: widget.profile.nim,
+          ),
+
+          InfoTile(
+            icon: Icons.school,
+            label: 'Program Studi',
+            value: widget.profile.prodi,
+          ),
+
+          InfoTile(
+            icon: Icons.class_,
+            label: 'Kelas',
+            value: widget.profile.kelas,
+          ),
+
+          const SizedBox(height: 15),
+
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Kontak Saya',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          InfoTile(
+            icon: Icons.email,
+            label: 'Email',
+            value: widget.profile.email,
+          ),
+
+          InfoTile(
+            icon: Icons.phone,
+            label: 'Nomor HP',
+            value: widget.profile.HP,
+          ),
+
+          InfoTile(
+            icon: Icons.code,
+            label: 'GitHub',
+            value: widget.profile.github,
+          ),
+        ],
+      ),
+    );
   }
 } 
