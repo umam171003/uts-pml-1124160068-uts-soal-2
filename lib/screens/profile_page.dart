@@ -201,6 +201,39 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             },
           ),
+
+          InfoTile(
+            icon: Icons.email,
+            label: 'Email',
+            value: widget.profile.email,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Email: ${widget.profile.email}')),
+              );
+            },
+          ),
+
+          InfoTile(
+            icon: Icons.phone,
+            label: 'Nomor HP',
+            value: widget.profile.HP,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Nomor HP: ${widget.profile.HP}')),
+              );
+            },
+          ),
+
+          InfoTile(
+            icon: Icons.code,
+            label: 'GitHub',
+            value: widget.profile.github,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Github: ${widget.profile.github}')),
+              );
+            },
+          ),
         ],
       ),
     );
